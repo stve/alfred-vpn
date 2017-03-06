@@ -6,6 +6,15 @@ function Connection(enabled, connected, name) {
 	this.enabled = enabled;
 	this.connected = connected;
 	this.name = name;
+	this.isConnected = () => {
+		return this.connected === '(Connected)'
+	};
+	this.isConnecting = () => {
+		return this.connected === '(Connecting)'
+	};
+	this.isDisconnected = () => {
+		return this.connected === '(Disconnected)'
+	};
 }
 
 const list = () => {
@@ -19,18 +28,27 @@ const list = () => {
 		if (line.indexOf('Available') > -1) {
 			return;
 		}
+		console.log(line);
 
 		let data = regex.exec(line.replace(/\s+/g, ' '));
-		let connection = new Connection(
-			data[1] === '*',
-			data[2] === '(Connected)',
-			data[3].replace(/"/g, '')
-		);
-		connections.push(connection);
+		if (data) {
+			let connection = new Connection(
+				data[1] === '*',
+				data[2],
+				data[3].replace(/"/g, '')
+			);
+			connections.push(connection);
+		}
 	});
 
 	return connections;
 };
+
+const findByName = (name) => {
+	return list().find(c => {
+		return c.name === name;
+	});
+}
 
 exports.List = list;
 
@@ -43,9 +61,11 @@ exports.Disconnect = name => {
 };
 
 exports.IsConnected = name => {
-	let found = list().find(c => {
-		return c.name === name;
-	});
-
-	return (found !== undefined && found.connected);
+	let found = findByName(name);
+	return (found !== undefined && found.isConnected());
 };
+
+exports.IsConnecting = name => {
+	let found = findByName(name);
+	return (found !== undefined && found.IsConnecting());
+}
