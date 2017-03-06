@@ -5,7 +5,7 @@ const list = require('./src/utils').List;
 alfy.output(list().map(c => {
 	return {
 		title: c.name,
-		subtitle: c.connected ? 'Status: Connected' : 'Status: Disconnected',
+		subtitle: 'Status: ' + c.connected,
 		arg: c.name
 	};
 }));
