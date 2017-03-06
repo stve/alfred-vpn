@@ -28,7 +28,6 @@ const list = () => {
 		if (line.indexOf('Available') > -1) {
 			return;
 		}
-		console.log(line);
 
 		let data = regex.exec(line.replace(/\s+/g, ' '));
 		if (data) {
