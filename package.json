@@ -1,0 +1,42 @@
+{
+  "name": "alfred-vpn",
+  "version": "0.1.0",
+  "description": "Alfred 3 workflow to connect/disconnect from VPNs",
+  "license": "MIT",
+  "repository": "stve/alfred-vpn",
+  "author": {
+    "name": "stve",
+    "email": "steve.agalloco@gmail.com",
+    "url": "beforeitwasround.com"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo",
+    "postinstall": "alfy-init",
+    "preuninstall": "alfy-cleanup"
+  },
+  "files": [
+    "index.js",
+    "icon.png",
+    "info.plist",
+    "src/utils.js",
+    "toggle.js"
+  ],
+  "keywords": [
+    "alfred",
+    "workflow",
+    "alfy",
+    "vpn",
+    "network"
+  ],
+  "dependencies": {
+    "alfy": "^0.6.0"
+  },
+  "devDependencies": {
+    "alfy-test": "^0.3.0",
+    "ava": "^0.18.0",
+    "xo": "^0.17.0"
+  }
+}
