@@ -29,6 +29,7 @@ const list = () => {
 			return;
 		}
 
+		regex.lastIndex = 0;
 		let data = regex.exec(line.replace(/\s+/g, ' '));
 		if (data) {
 			let connection = new Connection(
@@ -66,5 +67,5 @@ exports.IsConnected = name => {
 
 exports.IsConnecting = name => {
 	let found = findByName(name);
-	return (found !== undefined && found.IsConnecting());
+	return (found !== undefined && found.isConnecting());
 }
