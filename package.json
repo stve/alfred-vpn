@@ -1,6 +1,6 @@
 {
   "name": "alfred-vpn",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Alfred 3 workflow to connect/disconnect from VPNs",
   "license": "MIT",
   "repository": "stve/alfred-vpn",
