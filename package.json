@@ -1,13 +1,13 @@
 {
   "name": "alfred-vpn",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Alfred 3 workflow to connect/disconnect from VPNs",
   "license": "MIT",
   "repository": "stve/alfred-vpn",
   "author": {
     "name": "stve",
     "email": "steve.agalloco@gmail.com",
-    "url": "beforeitwasround.com"
+    "url": "https://beforeitwasround.com"
   },
   "engines": {
     "node": ">=4"
