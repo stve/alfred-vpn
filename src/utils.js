@@ -7,13 +7,13 @@ function Connection(enabled, connected, name) {
 	this.connected = connected;
 	this.name = name;
 	this.isConnected = () => {
-		return this.connected === '(Connected)'
+		return this.connected === '(Connected)';
 	};
 	this.isConnecting = () => {
-		return this.connected === '(Connecting)'
+		return this.connected === '(Connecting)';
 	};
 	this.isDisconnected = () => {
-		return this.connected === '(Disconnected)'
+		return this.connected === '(Disconnected)';
 	};
 }
 
@@ -44,31 +44,31 @@ const list = () => {
 	return connections;
 };
 
-const findByName = (name) => {
+const findByName = name => {
 	return list().find(c => {
 		return c.name === name;
 	});
-}
+};
 
 exports.List = list;
 
 exports.Connect = name => {
 	return spawn('osascript', ['-e',
-	`on run argv
-		set MyVPNName to item 1 of argv
+		`on run argv
+			set MyVPNName to item 1 of argv
 
-		tell application "System Events"
-				tell current location of network preferences
-								set myConnection to the service MyVPNName
-								if myConnection is not null then
-												if current configuration of myConnection is not connected then
-																connect myConnection
-												end if
-								end if
-				end tell
-		end tell
+			tell application "System Events"
+					tell current location of network preferences
+									set myConnection to the service MyVPNName
+									if myConnection is not null then
+													if current configuration of myConnection is not connected then
+																	connect myConnection
+													end if
+									end if
+					end tell
+			end tell
 		end run`,
-	name]);
+		name]);
 };
 
 exports.Disconnect = name => {
@@ -83,4 +83,4 @@ exports.IsConnected = name => {
 exports.IsConnecting = name => {
 	let found = findByName(name);
 	return (found !== undefined && found.isConnecting());
-}
+};
