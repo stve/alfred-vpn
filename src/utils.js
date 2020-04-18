@@ -53,7 +53,22 @@ const findByName = (name) => {
 exports.List = list;
 
 exports.Connect = name => {
-	return spawn('scutil', ['--nc', 'start', name]);
+	return spawn('osascript', ['-e',
+	`on run argv
+		set MyVPNName to item 1 of argv
+
+		tell application "System Events"
+				tell current location of network preferences
+								set myConnection to the service MyVPNName
+								if myConnection is not null then
+												if current configuration of myConnection is not connected then
+																connect myConnection
+												end if
+								end if
+				end tell
+		end tell
+		end run`,
+	name]);
 };
 
 exports.Disconnect = name => {
